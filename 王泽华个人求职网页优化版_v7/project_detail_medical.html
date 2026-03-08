@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>项目详情 | 中医舌下络脉影像标准化 - 王泽华</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center text-slate-600 hover:text-indigo-600 transition font-medium" href="王泽华_AI产品实习生_个人主页.html#projects" id="back-to-home">
+<span class="iconify mr-2" data-icon="heroicons:arrow-left-solid"></span> 返回主页 · 项目作品
+            </a>
+<span class="text-sm font-mono text-slate-400">更新日期: <span id="detail-date"></span></span>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-6">医疗影像数字化</div>
+<h1 class="text-4xl font-extrabold mb-8">中医舌下络脉影像标准化与智能分割</h1>
+<img alt="项目封面" class="w-full h-80 object-cover rounded-3xl shadow-lg mb-10" src="https://modao.cc/agent-py/media/generated_images/2026-03-08/a72ae237fa00400dbd22ef1c005a0837.jpg"/>
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">项目职责</div>
+<div class="font-bold text-indigo-600">项目负责人 / 产品实习</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">核心技术</div>
+<div class="font-bold text-indigo-600">SAM 2 / Python / CV</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">主要成果</div>
+<div class="font-bold text-indigo-600">Dice系数提升 36%</div>
+</div>
+</div>
+<article class="prose prose-slate max-w-none space-y-8">
+<section>
+<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>项目背景</h2>
+<p class="text-slate-600 leading-relaxed mt-4">传统中医诊断依赖医生主观经验，在舌下络脉分析中，由于影像对比度低、光照复杂，传统的标注数据可用率仅为 44.1%，严重阻碍了算法模型的迭代。</p>
+</section>
+<section>
+<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>核心方案</h2>
+<ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+<li><strong class="text-slate-900">大模型调研：</strong> 引入 Meta 最新的 SAM 2 模型，通过零样本（Zero-shot）能力解决低对比度下的边界模糊问题。</li>
+<li><strong class="text-slate-900">SOP 体系建立：</strong> 协调中医临床专家与算法团队，制定《中医舌下络脉标注标准约束文档》，将数据可用率从 44% 提升至 92%。</li>
+<li><strong class="text-slate-900">工程链路优化：</strong> 开发自动化预处理脚本，减少人工预筛选成本 60% 以上。</li>
+</ul>
+</section>
+</article>
+</main>
+<script>
+        (function () {
+            var d = new Date();
+            document.getElementById('detail-date').textContent = d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0');
+        })();
+    </script>
+</body>
+</html>

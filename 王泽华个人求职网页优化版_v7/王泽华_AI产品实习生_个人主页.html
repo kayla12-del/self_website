@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta name="theme-color" content="#0f172a"/>
+<title>王泽华 | AI 产品实习生 - 个人主页</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        :root {
+            --sat: env(safe-area-inset-top, 0px);
+            --sar: env(safe-area-inset-right, 0px);
+            --sab: env(safe-area-inset-bottom, 0px);
+            --sal: env(safe-area-inset-left, 0px);
+            --accent: #4f46e5;
+            --accent-soft: #eef2ff;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            letter-spacing: 0.01em;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(248, 250, 252, 0.9);
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+        .nav-active {
+            color: #4f46e5;
+            background: rgba(79, 70, 229, 0.08);
+            border-right: 3px solid #4f46e5;
+        }
+        .page-transition {
+            transition: all 0.25s ease;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        .card-hover {
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .card-hover:hover {
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+        }
+        /* 移动端：主内容区底部留白，避免被底部导航遮挡 */
+        @media (max-width: 767px) {
+            main { padding-bottom: calc(5rem + var(--sab)); }
+            .mobile-nav-wrap { padding-bottom: var(--sab); }
+        }
+        /* PC 端：整页（侧栏+主内容）居中，左右留白相等、随窗口变化 */
+        @media (min-width: 768px) {
+            #page-wrapper { max-width: 92rem; margin-left: auto; margin-right: auto; display: flex; flex-direction: row; width: 100%; min-height: 100vh; }
+            #main-content { flex: 1; min-width: 0; }
+        }
+        /* 触摸目标最小高度（移动端可点区域） */
+        @media (max-width: 767px) {
+            .touch-target { min-height: 44px; min-width: 44px; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+<div id="page-wrapper" class="w-full min-h-screen flex flex-col md:flex-row">
+<!-- 侧边导航栏 (桌面端，随整页居中) -->
+<aside class="hidden md:flex md:flex-shrink-0 w-64 min-h-screen flex-col bg-slate-900 text-white z-10">
+<div class="p-8">
+<div class="w-18 h-18 rounded-2xl gradient-bg flex items-center justify-center text-2xl font-semibold mb-4 shadow-md" style="width:4.5rem;height:4.5rem;">
+                泽华
+            </div>
+<h1 class="text-lg font-semibold tracking-tight">王泽华</h1>
+<p class="text-slate-400 text-xs mt-1 tracking-wide">AI 产品实习生 · 求职中</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<button class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all hover:bg-slate-800" id="nav-home" onclick="switchPage('home')">
+<span class="iconify text-xl" data-icon="heroicons:home-solid"></span>
+<span>首页展示</span>
+</button>
+<button class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all hover:bg-slate-800" id="nav-projects" onclick="switchPage('projects')">
+<span class="iconify text-xl" data-icon="heroicons:rocket-launch-solid"></span>
+<span>项目作品</span>
+</button>
+<button class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all hover:bg-slate-800" id="nav-skills" onclick="switchPage('skills')">
+<span class="iconify text-xl" data-icon="heroicons:cpu-chip-solid"></span>
+<span>专业技能</span>
+</button>
+<button class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all hover:bg-slate-800" id="nav-explore" onclick="switchPage('explore')">
+<span class="iconify text-xl" data-icon="heroicons:sparkles-solid"></span>
+<span>探索与思考</span>
+</button>
+<button class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all hover:bg-slate-800" id="nav-contact" onclick="switchPage('contact')">
+<span class="iconify text-xl" data-icon="heroicons:chat-bubble-left-right-solid"></span>
+<span>联系我</span>
+</button>
+</nav>
+<div class="p-8 border-t border-slate-800">
+<div class="text-xs text-slate-500 uppercase tracking-widest mb-4">当前日期</div>
+<div class="text-sm font-mono text-indigo-400" id="current-date"></div>
+</div>
+</aside>
+<!-- 移动端导航（含安全区） -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 flex justify-around py-3 mobile-nav-wrap" style="padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);">
+<button class="mobile-nav touch-target flex flex-col items-center justify-center text-indigo-600 flex-1 py-2" data-page="home" onclick="switchPage('home')">
+<span class="iconify text-2xl" data-icon="heroicons:home"></span>
+<span class="text-[10px] mt-1">首页</span>
+</button>
+<button class="mobile-nav touch-target flex flex-col items-center justify-center text-slate-400 flex-1 py-2" data-page="projects" onclick="switchPage('projects')">
+<span class="iconify text-2xl" data-icon="heroicons:rocket-launch"></span>
+<span class="text-[10px] mt-1">项目</span>
+</button>
+<button class="mobile-nav touch-target flex flex-col items-center justify-center text-slate-400 flex-1 py-2" data-page="skills" onclick="switchPage('skills')">
+<span class="iconify text-2xl" data-icon="heroicons:cpu-chip"></span>
+<span class="text-[10px] mt-1">技能</span>
+</button>
+<button class="mobile-nav touch-target flex flex-col items-center justify-center text-slate-400 flex-1 py-2" data-page="explore" onclick="switchPage('explore')">
+<span class="iconify text-2xl" data-icon="heroicons:sparkles"></span>
+<span class="text-[10px] mt-1">探索</span>
+</button>
+<button class="mobile-nav touch-target flex flex-col items-center justify-center text-slate-400 flex-1 py-2" data-page="contact" onclick="switchPage('contact')">
+<span class="iconify text-2xl" data-icon="heroicons:user"></span>
+<span class="text-[10px] mt-1">我的</span>
+</button>
+</div>
+<!-- 主内容区：随整页居中，两侧留白相等 -->
+<main class="min-h-screen page-transition flex-1 min-w-0" id="main-content">
+<div class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-6 md:py-10">
+<!-- 首页 -->
+<section class="space-y-12" id="page-home">
+<!-- 头部/个人简介 -->
+<header class="relative glass-card p-10 md:p-14 rounded-3xl shadow-sm flex flex-col md:flex-row items-center md:items-start overflow-hidden border border-slate-100/80">
+<div class="flex-1 text-center md:text-left z-10 pr-0 md:pr-64">
+<div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-indigo-50/90 text-indigo-600 rounded-full text-xs font-medium tracking-wide mb-6">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+</span>
+<span>2026 届技术型产品经理候选人</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-black tracking-tight leading-tight">
+                你好，我是 <span class="gradient-text">王泽华</span>
+</h1>
+<p class="text-xl md:text-2xl text-slate-500 font-medium mt-6 leading-relaxed max-w-2xl">
+                双硕士（985 + 美国联合培养），专注于 <span class="text-slate-900 border-b-2 border-indigo-200">AI 医疗影像</span> 与 <span class="text-slate-900 border-b-2 border-purple-200">政企自动化</span>。我致力于用技术深度定义产品边界。
+            </p>
+<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-10">
+<button class="px-8 py-4 gradient-bg text-white rounded-2xl shadow-xl hover:opacity-90 hover:scale-105 transition transform font-bold flex items-center" id="btn-get-resume" onclick="handleGetResume()">
+<span class="iconify mr-2 text-xl" data-icon="heroicons:paper-airplane-solid"></span>
+                    获取我的简历
+                </button>
+<div class="flex items-center space-x-4 ml-0 md:ml-4">
+<a class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-600 transition shadow-sm bg-white" href="#">
+<span class="iconify text-2xl" data-icon="mdi:github"></span>
+</a>
+<a class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-600 transition shadow-sm bg-white" href="#">
+<span class="iconify text-2xl" data-icon="mdi:linkedin"></span>
+</a>
+</div>
+</div>
+</div>
+<!-- 头像位置调整到右上角 -->
+<div class="mt-12 md:mt-0 md:absolute md:top-14 md:right-14 z-0">
+<div class="relative w-48 h-48 md:w-56 md:h-56">
+<div class="absolute inset-0 gradient-bg rounded-[3rem] rotate-6 opacity-20"></div>
+<div class="absolute inset-0 bg-white rounded-[3rem] -rotate-3 border border-indigo-100 flex items-center justify-center overflow-hidden shadow-2xl">
+<img src="户外生活照(1).jpg" alt="王泽华" class="w-full h-full object-cover" />
+</div>
+<!-- 装饰性帽徽 -->
+<div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-indigo-50">
+<span class="iconify text-3xl text-indigo-600" data-icon="heroicons:academic-cap-solid"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- 教育背景：优化后的紧凑版 -->
+<div class="space-y-6">
+<h3 class="text-3xl font-bold flex items-center"><span class="w-2 h-8 bg-indigo-500 rounded-full mr-4"></span>教育背景</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- 东北大学 -->
+<div class="glass-card p-6 rounded-3xl border-l-4 border-indigo-500 flex flex-col justify-between shadow-sm bg-white/60">
+<div class="text-left">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-bold text-slate-900 leading-tight">东北大学 (985)</h4>
+<span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded flex-shrink-0 ml-2">2024-2027</span>
+</div>
+<p class="text-indigo-600 font-bold text-lg mb-2 text-left">软件工程 · 硕士</p>
+<p class="text-base text-slate-500 leading-relaxed text-left">主修：高级软件工程、高级算法设计与分析、CMMI 过程模型与敏捷实践、应用数理统计</p>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-left">
+<span class="text-sm text-indigo-500 font-medium px-2 py-0.5 bg-indigo-50 rounded">双证书在读</span>
+</div>
+</div>
+<!-- UT Arlington -->
+<div class="glass-card p-6 rounded-3xl border-l-4 border-purple-500 flex flex-col justify-between shadow-sm bg-white/60">
+<div class="text-left">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-bold text-slate-900 leading-tight">美国德克萨斯大学阿灵顿分校</h4>
+<span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded flex-shrink-0 ml-2">2024-2027</span>
+</div>
+<p class="text-purple-600 font-bold text-lg mb-2 text-left">计算机科学 · 硕士</p>
+<p class="text-base text-slate-500 leading-relaxed text-left">主修：AI、Adv Topics in Dataset Systems、Adv Topics in Software Engineering</p>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-left">
+<span class="text-sm text-purple-500 font-medium px-2 py-0.5 bg-purple-50 rounded">联合培养</span>
+</div>
+</div>
+<!-- 太原科技大学 -->
+<div class="glass-card p-6 rounded-3xl border-l-4 border-slate-400 flex flex-col justify-between shadow-sm bg-white/60">
+<div class="text-left">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-bold text-slate-900 leading-tight">太原科技大学</h4>
+<span class="text-[10px] font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded flex-shrink-0 ml-2">2019-2023</span>
+</div>
+<p class="text-indigo-600 font-bold text-lg mb-2 text-left">软件工程 · 本科</p>
+<p class="text-base text-slate-500 leading-relaxed text-left">主修：软件工程、软件需求工程、软件项目管理、数据库系统原理、软件质量保证与测试</p>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-left">
+<span class="text-sm text-slate-500 font-medium px-2 py-0.5 bg-slate-50 rounded">校优干 / 一等奖</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 为什么是我：优化后的超紧凑版 -->
+<section class="space-y-6">
+<h3 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 bg-purple-500 rounded-full mr-4"></span>为什么是我？</h3>
+<div class="rounded-2xl shadow-sm bg-slate-900 text-white relative overflow-hidden border border-slate-800/50 p-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+<div class="flex items-start space-x-4 group">
+<div class="w-10 h-10 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500 group-hover:text-white transition">
+<span class="iconify text-xl" data-icon="heroicons:bolt-solid"></span>
+</div>
+<div>
+<h4 class="font-bold text-lg">工程底座支撑的产品感</h4>
+<p class="text-slate-400 text-sm mt-1 leading-snug">懂业务更懂模型收敛痛点，定义《标注标准》缩短 60% 后台周期。</p>
+</div>
+</div>
+<div class="flex items-start space-x-4 group">
+<div class="w-10 h-10 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500 group-hover:text-white transition">
+<span class="iconify text-xl" data-icon="heroicons:variable-solid"></span>
+</div>
+<div>
+<h4 class="font-bold text-lg">复杂业务逻辑拆解能力</h4>
+<p class="text-slate-400 text-sm mt-1 leading-snug">通过 Dify 工作流编排与 RAG 优化，将人工审计用时降低 95%。</p>
+</div>
+</div>
+<div class="flex items-start space-x-4 group">
+<div class="w-10 h-10 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 group-hover:text-white transition">
+<span class="iconify text-xl" data-icon="heroicons:beaker-solid"></span>
+</div>
+<div>
+<h4 class="font-bold text-lg">严谨的数据治理思维</h4>
+<p class="text-slate-400 text-sm mt-1 leading-snug">建立 6 维标准化评价体系，通过 Golden Set 对抗验证模型鲁棒性。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!-- 项目作品页 -->
+<section class="hidden space-y-6" id="page-projects">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold">核心项目经验</h2>
+<div class="flex space-x-2">
+<span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs font-semibold">RAG 架构</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">SAM 2</span>
+<span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs font-semibold">Agent 工作流</span>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- 项目 1 -->
+<div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100">
+<div class="grid md:grid-cols-[1.4fr_1fr]">
+<div class="p-6 md:p-8 space-y-4">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider">医疗影像数字化</div>
+<h3 class="text-2xl font-bold group-hover:text-indigo-600 transition">中医舌下络脉影像标准化与智能分割</h3>
+<div class="space-y-4 text-slate-600">
+<p><strong class="text-slate-900">痛点分析：</strong> 医学经验难以量化，导致标注数据可用率仅为 44.1%。</p>
+<p><strong class="text-slate-900">核心动作：</strong> 调研并引入 **SAM 2** 大模型，通过 PoC 验证其在低对比度环境下的零样本分割能力。</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">SAM 2</span>
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">PoC 验证</span>
+</div>
+<a class="inline-flex items-center text-indigo-600 font-bold hover:translate-x-2 transition-transform" href="project_detail_medical.html">
+    查看详细案例 <span class="iconify ml-1" data-icon="heroicons:arrow-right-20-solid"></span>
+</a>
+</div>
+</div>
+<div class="bg-slate-100 relative overflow-hidden flex-shrink-0 aspect-square w-full max-w-sm">
+<img alt="Tongue analysis visualization" class="object-contain w-full h-full transform group-hover:scale-105 transition duration-700" src="https://modao.cc/agent-py/media/generated_images/2026-03-08/a72ae237fa00400dbd22ef1c005a0837.jpg"/>
+</div>
+</div>
+</div>
+<!-- 项目 2 -->
+<div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100">
+<div class="grid md:grid-cols-[1.4fr_1fr]">
+<div class="p-6 md:p-8 space-y-4 md:order-2">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold uppercase tracking-wider">招投标自动化</div>
+<h3 class="text-2xl font-bold group-hover:text-indigo-600 transition">政企招投标自动化清标与审计系统</h3>
+<div class="space-y-4 text-slate-600">
+<p><strong class="text-slate-900">技术架构：</strong> 采用 Dify 编排核心工作流。利用 **DeepSeek/Qwen** 进行语义拆解，**GPT-4o-mini** 负责标准计算。</p>
+<p><strong class="text-slate-900">工程亮点：</strong> 通过 Python 脚本执行硬性指标校验解决模型计算幻觉。</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">Dify</span>
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">RAG 优化</span>
+</div>
+<a class="inline-flex items-center text-indigo-600 font-bold hover:translate-x-2 transition-transform" href="project_detail_agent.html">
+    查看详细案例 <span class="iconify ml-1" data-icon="heroicons:arrow-right-20-solid"></span>
+</a>
+</div></div>
+<div class="bg-slate-100 relative overflow-hidden flex-shrink-0 aspect-square w-full max-w-sm md:order-1">
+<img alt="Bidding system UI" class="object-contain w-full h-full transform group-hover:scale-105 transition duration-700" src="https://modao.cc/agent-py/media/generated_images/2026-03-08/2f4f34a112e242ff838fe6844688e9b4.jpg"/>
+</div>
+</div>
+</div>
+<!-- 项目 3 -->
+<div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100">
+<div class="grid md:grid-cols-[1.4fr_1fr]">
+<div class="p-6 md:p-8 space-y-4">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-xs font-bold uppercase tracking-wider">AI Agent &amp; 低代码</div>
+<h3 class="text-2xl font-bold group-hover:text-indigo-600 transition">行业信息获取与日报生成 Agent</h3>
+<div class="space-y-4 text-slate-600">
+<p><strong class="text-slate-900">核心功能：</strong> 基于 **Coze** 搭建自动化 Agent，实时抓取垂直领域行业动态。</p>
+<p><strong class="text-slate-900">实施细节：</strong> 完成从原始网页信息爬取、数据清洗入库到每日早报结构化转化的全流程闭环，显著降低信息碎片化焦虑。</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">Coze 工作流</span>
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">爬虫集成</span>
+<span class="px-3 py-1 bg-slate-100 rounded text-xs select-none">数据库入库</span>
+</div>
+</div>
+</div>
+<div class="bg-slate-100 relative overflow-hidden flex-shrink-0 aspect-square w-full max-w-sm">
+<img alt="Info Agent Dashboard" class="object-contain w-full h-full transform group-hover:scale-105 transition duration-700" src="https://modao.cc/agent-py/media/generated_images/2026-03-08/31c2baa3569c4028ae90bdd0a179895c.jpg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 专业技能页 -->
+<section class="hidden space-y-10" id="page-skills">
+<h2 class="text-3xl font-bold">专业技能体系</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- AI 与流程编排 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+<div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+<span class="iconify text-2xl" data-icon="heroicons:bolt-solid"></span>
+</div>
+<h3 class="text-xl font-bold mb-4">AI 业务落地</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1"><span>Dify / Coze 编排</span><span class="text-indigo-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-indigo-600 h-full w-[90%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>RAG 架构调优</span><span class="text-indigo-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-indigo-600 h-full w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>多模型路由 (Recall/Sort)</span><span class="text-indigo-600">进阶</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-indigo-600 h-full w-[80%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 开发与数据 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+<div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+<span class="iconify text-2xl" data-icon="heroicons:code-bracket-solid"></span>
+</div>
+<h3 class="text-xl font-bold mb-4">技术底座</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1"><span>Python (数据处理/爬虫)</span><span class="text-purple-600">精通</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-purple-600 h-full w-[92%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>SQL / 向量数据库</span><span class="text-purple-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-purple-600 h-full w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>Git / 系统工程化</span><span class="text-purple-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-purple-600 h-full w-[88%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 产品与协作 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+<div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mb-6">
+<span class="iconify text-2xl" data-icon="heroicons:pencil-square-solid"></span>
+</div>
+<h3 class="text-xl font-bold mb-4">产品能力</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1"><span>Figma (原型设计)</span><span class="text-pink-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-pink-600 h-full w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>PRD / 标准文档撰写</span><span class="text-pink-600">精通</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-pink-600 h-full w-[95%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1"><span>需求量化与评估系统</span><span class="text-pink-600">熟练</span></div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-pink-600 h-full w-[90%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-900 rounded-3xl p-12 text-white">
+<h3 class="text-xl font-bold mb-8 flex items-center"><span class="iconify mr-2" data-icon="heroicons:light-bulb-solid"></span> 软技能与通识</h3>
+<div class="flex flex-col gap-6">
+<span class="px-8 py-4 border border-slate-700 rounded-2xl hover:bg-slate-800 transition text-center md:text-left">快速学习能力 (4次一等奖学金)</span>
+<span class="px-8 py-4 border border-slate-700 rounded-2xl hover:bg-slate-800 transition text-center md:text-left">中医/计算机跨领域协作</span>
+<span class="px-8 py-4 border border-slate-700 rounded-2xl hover:bg-slate-800 transition text-center md:text-left">中英文学术阅读与交流</span>
+<span class="px-8 py-4 border border-slate-700 rounded-2xl hover:bg-slate-800 transition text-center md:text-left">指标驱动的项目管理</span>
+</div>
+</div>
+</section>
+<!-- 探索与思考页：AI 工具 + 产品想法 -->
+<section class="hidden space-y-10" id="page-explore">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 tracking-tight">探索与思考</h2>
+<p class="text-slate-500 mt-2 text-sm max-w-2xl">持续体验 AI 工具、沉淀产品对比与想法，保持对赛道的敏感度。</p>
+</div>
+<!-- 正在探索的 AI 工具 -->
+<div class="space-y-6">
+<h3 class="text-xl font-semibold text-slate-800 flex items-center">
+<span class="w-1.5 h-6 bg-indigo-500 rounded-full mr-3"></span>
+正在探索的 AI 工具
+</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm font-bold">Dify</span>
+<span class="text-xs text-slate-400">工作流 / 应用搭建</span>
+</div>
+<p class="text-slate-600 text-sm leading-relaxed">对比 Dify 与 Coze 在 RAG、多轮对话上的产品化差异，关注可观测性与权限设计。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-bold">Cursor</span>
+<span class="text-xs text-slate-400">AI 编程</span>
+</div>
+<p class="text-slate-600 text-sm leading-relaxed">体验 Cursor Agent 与 Composer 的上下文利用方式，思考「人机协作」的交互边界。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-bold">Claude</span>
+<span class="text-xs text-slate-400">长文本 / 推理</span>
+</div>
+<p class="text-slate-600 text-sm leading-relaxed">对比 Claude 与 DeepSeek 在长文档理解、输出结构化上的体验差异。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center text-sm font-bold">Coze</span>
+<span class="text-xs text-slate-400">Bot / 工作流</span>
+</div>
+<p class="text-slate-600 text-sm leading-relaxed">实际搭建过日报 Agent，持续关注插件生态与多模型路由的产品形态。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm font-bold">通义 / 文心</span>
+<span class="text-xs text-slate-400">国产大模型</span>
+</div>
+<p class="text-slate-600 text-sm leading-relaxed">跟进国产模型 API 能力与文档体验，用于项目选型与成本评估。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-5 card-hover border-dashed border-slate-200">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-9 h-9 rounded-lg bg-slate-100 text-slate-400 flex items-center justify-center text-sm">+</span>
+<span class="text-xs text-slate-400">持续扩充</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed italic">保持对新产品与迭代的敏感，定期更新体验笔记。</p>
+</div>
+</div>
+</div>
+<!-- 产品思考与对比 -->
+<div class="space-y-6 pt-6 border-t border-slate-100">
+<h3 class="text-xl font-semibold text-slate-800 flex items-center">
+<span class="w-1.5 h-6 bg-purple-500 rounded-full mr-3"></span>
+产品思考与对比
+</h3>
+<div class="space-y-4">
+<div class="bg-white rounded-2xl border border-slate-100 p-6 card-hover">
+<h4 class="font-semibold text-slate-900 mb-2">RAG 产品化标准流程</h4>
+<p class="text-slate-600 text-sm leading-relaxed">在做的：梳理「文档接入 → 切块/向量化 → 检索策略 → 引用展示」的通用产品路径，对比 Dify / LangChain 等实现的差异，思考可配置化与可解释性。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-6 card-hover">
+<h4 class="font-semibold text-slate-900 mb-2">多模型路由的体验差异</h4>
+<p class="text-slate-600 text-sm leading-relaxed">在对比：Recall-Sort 双阶段 vs 单模型 + 规则分流，在延迟、成本、可解释性上的权衡；关注「何时让用户感知到模型切换」的体验设计。</p>
+</div>
+<div class="bg-white rounded-2xl border border-slate-100 p-6 card-hover">
+<h4 class="font-semibold text-slate-900 mb-2">Agent 工作流的可观测性</h4>
+<p class="text-slate-600 text-sm leading-relaxed">在思考：复杂工作流下如何做步骤可视化、中间结果预览与回放，便于调试与用户信任。参考 Cursor 的 step 展示与 Dify 的日志能力。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 联系我页 -->
+<section class="hidden space-y-12" id="page-contact">
+<div class="max-w-3xl">
+<h2 class="text-3xl font-bold">保持联系</h2>
+<p class="text-slate-500 mt-4 leading-relaxed">
+                    我对 AI 产品实习、大模型应用落地或 RAG 架构设计等岗位充满热情。如果您正在寻找一名具备扎实技术底座且富有工程落地经验的产品实习生，欢迎通过以下方式联系我。
+                </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+<a class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-md transition group" href="#" onclick="handleCopyPhone(event)" title="点击复制电话">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition">
+<span class="iconify text-2xl" data-icon="heroicons:phone-solid"></span>
+</div>
+<div>
+<div class="text-slate-400 text-xs">电话</div>
+<div class="font-bold">13133317836</div>
+</div>
+</div>
+</a>
+<a class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-md transition group" href="mailto:wangzehua_ai@edu.cn?subject=简历索取/合作咨询" title="发送邮件">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition">
+<span class="iconify text-2xl" data-icon="heroicons:envelope-solid"></span>
+</div>
+<div>
+<div class="text-slate-400 text-xs">电子邮箱</div>
+<div class="font-bold text-sm">2575917420@qq.com</div>
+</div>
+</div>
+</a>
+</div>
+<div class="flex flex-col items-center justify-center mt-12 p-8 border border-indigo-100 rounded-[2.5rem] bg-indigo-50/30">
+<p class="text-slate-600 font-medium mb-4">需要我的完整版 PDF 简历？</p>
+<button type="button" onclick="handleDownloadResume()" class="px-10 py-4 gradient-bg text-white rounded-2xl shadow-xl hover:opacity-90 transition font-bold flex items-center inline-flex w-fit cursor-pointer border-0">
+<span class="iconify mr-2 text-xl" data-icon="heroicons:arrow-down-tray-solid"></span>
+                        立即下载简历
+                    </button>
+<p class="text-xs text-slate-500 mt-3">若未弹出保存对话框，请点击 <a href="王泽华_产品实习生_13133317836.pdf" download="王泽华_AI产品实习生_简历.pdf" class="text-indigo-600 font-medium underline">直接打开链接</a>，在浏览器中打开 PDF 后按 Ctrl+S 保存。</p>
+<p class="text-xs text-slate-500">或 <a href="mailto:wangzehua_ai@edu.cn?subject=索取简历-王泽华" class="text-indigo-600 font-medium underline hover:no-underline">发邮件索取</a>。</p>
+<p class="text-[10px] text-slate-400 mt-4 uppercase">Last Updated: <span id="resume-update-date"></span></p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<script>
+        // 动态显示当前日期（格式：YYYY.MM.DD）
+        function setCurrentDate() {
+            const now = new Date();
+            const str = now.getFullYear() + '.' + String(now.getMonth() + 1).padStart(2, '0') + '.' + String(now.getDate()).padStart(2, '0');
+            const el = document.getElementById('current-date');
+            if (el) el.textContent = str;
+            const resumeDate = document.getElementById('resume-update-date');
+            if (resumeDate) resumeDate.textContent = str;
+        }
+
+        // 获取简历：跳转到联系我并提示
+        function handleGetResume() {
+            switchPage('contact');
+            showToast('请通过下方邮箱索取简历，或点击「立即下载简历」');
+        }
+
+        // 立即下载简历：优先通过 Blob 触发保存，失败则打开链接
+        function handleDownloadResume() {
+            var pdfPath = '王泽华_产品实习生_13133317836.pdf';
+            var saveName = '王泽华_AI产品实习生_简历.pdf';
+            fetch(pdfPath, { method: 'GET' })
+                .then(function (res) { return res.blob(); })
+                .then(function (blob) {
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = saveName;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showToast('简历已开始下载，请选择保存位置');
+                })
+                .catch(function () {
+                    var a = document.createElement('a');
+                    a.href = pdfPath;
+                    a.download = saveName;
+                    a.target = '_blank';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    showToast('若未弹出保存，请使用下方「直接打开链接」后按 Ctrl+S 保存');
+                });
+        }
+
+        // 复制电话到剪贴板（占位号可替换为真实号码）
+        function handleCopyPhone(e) {
+            e.preventDefault();
+            const phone = '13133317836'; // 替换为您的真实电话
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(phone).then(() => showToast('电话已复制：' + phone));
+            } else {
+                showToast('请手动复制：' + phone);
+            }
+        }
+
+        // 简单 Toast 提示
+        function showToast(msg) {
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.className = 'fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-slate-800 text-white text-sm rounded-2xl shadow-xl z-[100] opacity-0 transition-opacity duration-300';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => toast.classList.add('opacity-0'), 2500);
+        }
+
+        function switchPage(pageId) {
+            const pages = ['home', 'projects', 'skills', 'explore', 'contact'];
+            pages.forEach(p => {
+                const pageEl = document.getElementById('page-' + p);
+                if (pageEl) pageEl.classList.add('hidden');
+                const navItem = document.getElementById('nav-' + p);
+                if (navItem) {
+                    navItem.classList.remove('nav-active', 'bg-slate-800', 'text-indigo-400');
+                    navItem.classList.add('text-slate-400');
+                }
+                // 移动端导航高亮
+                const mobileBtns = document.querySelectorAll('.mobile-nav[data-page="' + p + '"]');
+                mobileBtns.forEach(btn => {
+                    btn.classList.remove('text-indigo-600');
+                    btn.classList.add('text-slate-400');
+                });
+            });
+
+            const selectedPage = document.getElementById('page-' + pageId);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+                selectedPage.classList.add('animate-in', 'fade-in', 'duration-500');
+            }
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('nav-active', 'bg-slate-800', 'text-indigo-400');
+                activeNav.classList.remove('text-slate-400');
+            }
+            const activeMobile = document.querySelector('.mobile-nav[data-page="' + pageId + '"]');
+            if (activeMobile) {
+                activeMobile.classList.add('text-indigo-600');
+                activeMobile.classList.remove('text-slate-400');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 移动端/PC 适配：设置 data-device 供样式或逻辑使用
+        function setDeviceType() {
+            var w = window.innerWidth;
+            document.documentElement.setAttribute('data-device', w < 768 ? 'mobile' : 'desktop');
+        }
+        window.addEventListener('resize', setDeviceType);
+
+        window.onload = () => {
+            setDeviceType();
+            setCurrentDate();
+            var hash = (window.location.hash || '').toLowerCase();
+            if (hash === '#projects') switchPage('projects');
+            else if (hash === '#skills') switchPage('skills');
+            else if (hash === '#explore') switchPage('explore');
+            else if (hash === '#contact') switchPage('contact');
+            else switchPage('home');
+            if (window.location.protocol === 'file:') {
+                setTimeout(function () { showToast('当前为本地文件打开，简历下载请用「本地服务器」打开本页'); }, 800);
+            }
+        };
+    </script>
+</body>
+</html>
