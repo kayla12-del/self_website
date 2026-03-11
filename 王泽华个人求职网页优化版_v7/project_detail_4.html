@@ -22,8 +22,8 @@
 </div>
 </nav>
 <main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
-<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold mb-6">招投标自动化</div>
-<h1 class="text-4xl font-extrabold mb-8">政企招投标自动化清标与审计系统</h1>
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold mb-6">智能售后客服</div>
+<h1 class="text-4xl font-extrabold mb-8">智能售后客服Agent</h1>
 
 <!-- 项目界面预览：固定高度容器 + 支持拖拽缩放 -->
 <div class="w-full mb-6">
@@ -32,7 +32,7 @@
         <img id="agent-zoom-image"
              alt="项目封面 - 清标与审计系统界面"
              class="select-none"
-             src="项目二.png"/>
+             src="售后客服界面.png"/>
     </div>
     <p class="mt-2 text-xs text-slate-400 text-center">提示：滚轮缩放，按住拖动可查看细节。</p>
 </div>
@@ -43,30 +43,62 @@
 </div>
 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
 <div class="text-slate-400 text-xs mb-1">核心技术</div>
-<div class="font-bold text-indigo-600">Dify / DeepSeek·Qwen / RAG</div>
+<div class="font-bold text-indigo-600">Coze / RAG</div>
 </div>
 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
 <div class="text-slate-400 text-xs mb-1">主要成果</div>
-<div class="font-bold text-indigo-600">人工审计用时15分钟缩短到45s</div>
+<div class="font-bold text-indigo-600">实现五类核心售后意图的精准识别</div>
 </div>
 </div>
 <article class="prose prose-slate max-w-none space-y-8">
-<section>
-<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>项目背景</h2>
-<p class="text-slate-600 leading-relaxed mt-4">政企招投标清标与审计依赖大量人工比对条款、计算偏差，耗时长且易出错。需要将招标文件、投标文件与标准规范进行语义拆解与硬性指标校验，并输出结构化审计结果。</p>
-</section>
-<section>
-<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>技术架构</h2>
-<ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
-<li><strong class="text-slate-900">Dify 工作流编排：</strong> 使用 Dify 搭建核心清标与审计流水线，串联文档解析、语义理解与结果汇总。</li>
-<li><strong class="text-slate-900">多模型分工：</strong> 利用 Qwen2.5 进行招标/投标文本的语义拆解与条款抽取，DeepSeek V3 负责标准计算与合规判断。</li>
-<li><strong class="text-slate-900">RAG 优化：</strong> 将采购的服务器白皮书、历史标书纳入知识库，通过 RAG 提升检索与引用准确性，减少幻觉。</li>
-</ul>
-</section>
-<section>
-<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>工程亮点</h2>
-<p class="text-slate-600 leading-relaxed mt-4">针对模型在数值计算上的幻觉问题，使用 <strong class="text-slate-900">Python 脚本</strong> 执行硬性指标校验（如价格、工期、资质条款），将 LLM 输出与规则引擎结合，确保审计结果可追溯、可复验。</p>
-</section>
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            核心方案
+        </h2>
+        <ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+            <li>
+                <strong class="text-slate-900">意图识别准确率：</strong>
+                将政策咨询、紧急投诉、业务办理等 5 类核心售后意图做了精细化拆解与标签设计，结合少样本微调与规则兜底，实现多轮对话下的精准路由，整体分类准确率稳定在
+                <span class="font-semibold text-indigo-600">94%+</span>。
+            </li>
+            <li>
+                <strong class="text-slate-900">人工替代率：</strong>
+                基于场景自适应工作流，将常见问答（如物流查询、基础政策解读、简单工单处理）的自动化解决率（Deflection Rate）提升约
+                <span class="font-semibold text-indigo-600">70%</span>，明显缓解了高峰期人工客服的排队与响应压力。
+            </li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            成本控制维度：算力精算与模型路由
+        </h2>
+        <ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+            <li>
+                <strong class="text-slate-900">推理成本优化：</strong>
+                采用多模型路由策略：简单 FAQs 与状态查询走轻量模型，复杂逻辑和情绪敏感场景才调用 Doubao-1.8 thinking 等高阶模型；相比全量使用旗舰模型，整体 Token 推理成本下降约
+                <span class="font-semibold text-indigo-600">55%</span>。
+            </li>
+            <li>
+                <strong class="text-slate-900">RAG 召回精度：</strong>
+                在售后政策与操作规范的检索链路中，引入向量检索 + 关键词检索 + Rerank 的混合策略，使关键条款的召回率提升约
+                <span class="font-semibold text-indigo-600">25%</span>，显著降低了规则类问题的幻觉率。
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            闭环管理维度：数据驱动迭代
+        </h2>
+        <p class="text-slate-600 leading-relaxed mt-4">
+            基于用户「踩/赞」反馈与会话日志，搭建了自动化 Badcase 归因 Pipeline：将低满意度对话按意图类型、失败原因与知识库命中情况进行聚类分析，让智能客服能力真正进入数据驱动的持续进化闭环。
+        </p>
+    </section>
 </article>
 </main>
 <script>

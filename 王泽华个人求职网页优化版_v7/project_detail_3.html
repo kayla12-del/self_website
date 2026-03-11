@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>项目详情 | 多源研报与文案生成 Agent - 王泽华</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center text-slate-600 hover:text-indigo-600 transition font-medium" href="javascript:void(0)" id="back-to-home">
+<span class="iconify mr-2" data-icon="heroicons:arrow-left-solid"></span> 返回项目作品列表
+            </a>
+<span class="text-sm font-mono text-slate-400">更新日期: <span id="detail-date"></span></span>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-xs font-bold mb-6">文案生成 Agent</div>
+<h1 class="text-4xl font-extrabold mb-8">多源研报与文案生成 Agent</h1>
+
+<!-- 项目预览：固定高度容器，使用录屏视频展示 -->
+<div class="w-full mb-6">
+    <div class="w-full h-96 md:h-[28rem] overflow-hidden rounded-3xl shadow-lg bg-slate-900/5 flex items-center justify-center">
+        <video class="w-full h-full object-contain rounded-3xl"
+               src="openclaw.mp4"
+               controls
+               muted
+               loop
+               playsinline>
+            您的浏览器暂不支持视频标签。
+        </video>
+    </div>
+    <p class="mt-2 text-xs text-slate-400 text-center">多源研报与文案生成 Agent 录屏：从抓取研报到生成多渠道文案的完整流程。</p>
+</div>
+
+<!-- 关键信息卡片：职责 / 技术 / 成果 -->
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="text-slate-400 text-xs mb-1">项目职责</div>
+        <div class="font-bold text-indigo-600">需求梳理 / 工作流设计</div>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="text-slate-400 text-xs mb-1">核心技术</div>
+        <div class="font-bold text-indigo-600">OpenClaw / 大模型文案生成</div>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="text-slate-400 text-xs mb-1">主要成果</div>
+        <div class="font-bold text-indigo-600">日均处理 20+ 研报</div>
+    </div>
+</div>
+
+<!-- 文本结构：背景 / 方案设计 / 效果与价值 -->
+<article class="prose prose-slate max-w-none space-y-8">
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            项目背景
+        </h2>
+        <p class="text-slate-600 leading-relaxed mt-4">
+            研究报告与行业研报来源分散、格式不一，运营与投研团队需要反复「下载–阅读–摘录–改写」，不仅耗时，还难以沉淀为可检索的结构化资产。希望用 OpenClaw 的 Skills 将「信息获取 → 结构化整理 → 多渠道文案生成」串成标准工作流，减少重复劳动。
+        </p>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            方案设计
+        </h2>
+        <ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+            <li><strong class="text-slate-900">多源抓取：</strong> 基于 OpenClaw 配置订阅源与爬取策略，自动从公开研报网站、团队共享盘与内部知识库收集最新内容。</li>
+            <li><strong class="text-slate-900">结构化摘要：</strong> 使用大模型将长文拆解为「结论 / 逻辑链路 / 关键数据」三层结构，输出统一模版的结构化摘要，便于检索与复用。</li>
+            <li><strong class="text-slate-900">多渠道文案生成：</strong> 针对邮件、社交媒体、内部周报等不同发布场景设计文案模版，一键生成不同语气与长度的版本，并自动落库归档。</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-bold flex items-center">
+            <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+            效果与价值
+        </h2>
+        <ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+            <li><strong class="text-slate-900">效率提升：</strong> 单篇研报从「下载 + 阅读 + 摘录 + 改写」约 30–40 分钟，缩短到 5 分钟内完成审阅与定稿。</li>
+            <li><strong class="text-slate-900">知识沉淀：</strong> 所有摘要与文案按「赛道 / 机构 / 时间」自动归档，后续选题与复盘可以直接在库内检索引用。</li>
+            <li><strong class="text-slate-900">沟通体验：</strong> 不同渠道的文案风格统一又不雷同，使关键结论更容易被业务与管理层快速理解与采纳。</li>
+        </ul>
+    </section>
+</article>
+</main>
+<script>
+        (function () {
+            // 更新日期
+            var d = new Date();
+            var el = document.getElementById('detail-date');
+            if (el) {
+                el.textContent =
+                    d.getFullYear() + '.' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '.' +
+                    String(d.getDate()).padStart(2, '0');
+            }
+
+            // 返回项目作品列表：使用浏览器返回上一级
+            var backLink = document.getElementById('back-to-home');
+            if (backLink) {
+                backLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
