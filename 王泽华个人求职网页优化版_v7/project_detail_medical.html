@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>项目详情 | 中医舌下络脉影像标准化 - 王泽华</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center text-slate-600 hover:text-indigo-600 transition font-medium" href="javascript:void(0)" id="back-to-home">
+<span class="iconify mr-2" data-icon="heroicons:arrow-left-solid"></span> 返回项目作品列表
+            </a>
+<span class="text-sm font-mono text-slate-400">更新日期: <span id="detail-date"></span></span>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-6">医疗影像数字化</div>
+<h1 class="text-4xl font-extrabold mb-8">中医舌下络脉影像标准化与智能分割</h1>
+
+<!-- 项目界面预览：固定高度容器 + 自动轮播 + 指示点切换 -->
+<div class="w-full mb-4">
+  <!-- 固定高度的展示框，内部图片完整展示，框大小不随图片变化 -->
+  <div id="gallery-medical"
+       class="w-full h-96 md:h-[28rem] overflow-hidden rounded-3xl shadow-lg bg-slate-100 flex items-center justify-center">
+    <img alt="舌下络脉标注平台 - 上传页面" class="w-full h-full object-contain" src="项目一1.png"/>
+    <img alt="舌下络脉标注平台 - 标注工具界面 1" class="w-full h-full object-contain" src="项目一2.jpg"/>
+    <img alt="舌下络脉标注平台 - 标注工具界面 2" class="w-full h-full object-contain" src="项目一03.jpg"/>
+  </div>
+
+  <!-- 指示点（放在框下方） -->
+  <div id="gallery-medical-dots" class="flex justify-center gap-2 mt-3">
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="0"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="1"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="2"></span>
+  </div>
+</div>
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">项目职责</div>
+<div class="font-bold text-indigo-600">项目负责人</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">核心技术</div>
+<div class="font-bold text-indigo-600">SAM 2 / Python / CV</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">主要成果</div>
+<div class="font-bold text-indigo-600">Dice系数提升 36.12%</div>
+</div>
+</div>
+<article class="prose prose-slate max-w-none space-y-10">
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+  项目背景与痛点洞察
+</h2>
+<div class="mt-4 space-y-3 text-slate-600 leading-relaxed">
+  <p><strong class="text-slate-900">初期瓶颈：</strong> 项目前期，医疗团队已经积累了大量舌诊 RGB 影像，但在多轮自动分割与量化尝试中，模型精度始终无法达到临床要求，专家一度认为问题出在 RGB 色域表达力不足，希望投入资源研发全新的色彩表征算法。</p>
+  <p><strong class="text-slate-900">需求分析：</strong> 接手后没有直接投入算法研究，而是先对首批数据做基准测试，发现影响上限的关键并非模型结构，而是“医生经验标准”与“视觉工程标准”之间存在明显语义断层。</p>
+  <p><strong class="text-slate-900">关键发现：</strong> 由于缺乏统一的标注协议，首批标注数据存在大量语义偏差与噪声，可用率仅为 <span class="font-semibold text-indigo-600">44.1%</span>；在这样的数据前提下，任何算法调参都只能在“脏数据天花板”下内卷。</p>
+</div>
+</section>
+
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+核心方案：从算法驱动到数据治理驱动
+</h2>
+<p class="text-slate-600 leading-relaxed mt-4">
+  作为项目负责人，我主导将路线从单一“算法研发”调整为<strong class="text-slate-900">“AI 辅助标注 + 数据质量闭环平台”</strong>的建设：
+</p>
+<ul class="list-none space-y-3 text-slate-600 mt-3 pl-0">
+  <li><strong class="text-slate-900">标准重构：</strong> 通过深入了解医生团队的标注流程，将医生的主观视觉经验拆解为可量化的视觉工程指标，联合专家共建统一的舌下络脉标注协议与质检规范。</li>
+  <li><strong class="text-slate-900">SAM 2 驱动的AI辅助标注系统：</strong>
+    <ul class="list-disc list-inside ml-6 space-y-2">
+      <li>冷启动阶段：精选高质量样本，对 SAM 2 进行少量微调，使其适配舌下络脉场景。</li>
+      <li>预标注与回流：由模型给出预标注结果，在可视化平台中由不同权限层级医生进行核验与微调，大幅减少重复描边工作。</li>
+      <li>主动学习：高置信度样本自动进入训练集，对于Badcase进行定向增强与回标，持续抬升模型上限。</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+业务价值与成果
+</h2>
+<ul class="list-none space-y-3 text-slate-600 mt-4 pl-0">
+  <li><strong class="text-slate-900">数据质量提升：</strong> 通过标准重构 + AI辅助标注系统，将影像数据可用率从 <span class="font-semibold text-indigo-600">44.1%</span> 提升到 <span class="font-semibold text-indigo-600">92%</span>，为后续深度学习任务提供了可闭环的数据底座。</li>
+  <li><strong class="text-slate-900">效率提升：</strong> 在统一标注标准和预标注机制下，完整标注流水线效率提升约 <span class="font-semibold text-indigo-600">60%</span>，医生从“画轮廓”转向“做决策”。</li>
+  <li><strong class="text-slate-900">算法效果拉升：</strong> 在高质量数据集支撑下，舌下络脉量化分析模型的核心评价指标（如 Dice 系数）相较初始版本实现 <span class="font-semibold text-indigo-600">36.12%</span> 的断层式提升，从“实验室 Demo”真正跨过临床可用红线。</li>
+</ul>
+</section>
+</article>
+</main>
+<script>
+        (function () {
+            // 更新日期
+            var d = new Date();
+            var dateEl = document.getElementById('detail-date');
+            if (dateEl) {
+                dateEl.textContent =
+                    d.getFullYear() + '.' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '.' +
+                    String(d.getDate()).padStart(2, '0');
+            }
+
+            // 自动轮播 + hover 指示点切换
+            var gallery = document.getElementById('gallery-medical');
+            var dotsWrap = document.getElementById('gallery-medical-dots');
+            if (!gallery || !dotsWrap) return;
+
+            var imgs = gallery.querySelectorAll('img');
+            var dots = dotsWrap.querySelectorAll('[data-index]');
+            if (!imgs.length || imgs.length !== dots.length) return;
+
+            var current = 0;
+            var timer = null;
+            var interval = 3500;
+
+            function updateView(index) {
+                // 切换图片
+                for (var i = 0; i < imgs.length; i++) {
+                    imgs[i].style.display = (i === index ? 'block' : 'none');
+                }
+                // 更新指示点样式
+                for (var j = 0; j < dots.length; j++) {
+                    dots[j].style.backgroundColor = (j === index ? 'rgba(79,70,229,0.9)' : 'rgba(148,163,184,0.4)');
+                    dots[j].style.transform = (j === index ? 'scale(1.2)' : 'scale(1)');
+                }
+            }
+
+            function startAuto() {
+                stopAuto();
+                timer = setInterval(function () {
+                    current = (current + 1) % imgs.length;
+                    updateView(current);
+                }, interval);
+            }
+
+            function stopAuto() {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }
+
+            // 初始化
+            updateView(current);
+            startAuto();
+
+            // 指示点 hover 切换
+            dots.forEach(function (dot) {
+                dot.addEventListener('mouseenter', function () {
+                    var idx = parseInt(dot.getAttribute('data-index'), 10) || 0;
+                    current = idx;
+                    updateView(current);
+                    stopAuto(); // 悬停时暂停自动轮播
+                });
+                dot.addEventListener('mouseleave', function () {
+                    startAuto(); // 移出后恢复自动轮播
+                });
+            });
+
+            // 返回项目作品列表：使用浏览器返回上一级
+            var backLink = document.getElementById('back-to-home');
+            if (backLink) {
+                backLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

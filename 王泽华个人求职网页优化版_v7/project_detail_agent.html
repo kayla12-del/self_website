@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>项目详情 | 政企招投标自动化清标与审计 - 王泽华</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center text-slate-600 hover:text-indigo-600 transition font-medium" href="javascript:void(0)" id="back-to-home">
+<span class="iconify mr-2" data-icon="heroicons:arrow-left-solid"></span> 返回项目作品列表
+            </a>
+<span class="text-sm font-mono text-slate-400">更新日期: <span id="detail-date"></span></span>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold mb-6">招投标自动化</div>
+<h1 class="text-4xl font-extrabold mb-8">政企招投标自动化清标与审计系统</h1>
+
+<!-- 项目界面预览：固定高度容器 + 支持拖拽缩放 -->
+<div class="w-full mb-6">
+    <div id="agent-zoom-wrapper"
+         class="w-full h-96 md:h-[28rem] overflow-hidden rounded-3xl shadow-lg bg-slate-100 flex items-center justify-center cursor-grab">
+        <img id="agent-zoom-image"
+             alt="项目封面 - 清标与审计系统界面"
+             class="select-none"
+             src="项目二.png"/>
+    </div>
+    <p class="mt-2 text-xs text-slate-400 text-center">提示：滚轮缩放，按住拖动可查看细节。</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">项目职责</div>
+<div class="font-bold text-indigo-600">产品设计 / 工作流编排</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">核心技术</div>
+<div class="font-bold text-indigo-600">Dify / DeepSeek·Qwen / RAG</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">主要成果</div>
+<div class="font-bold text-indigo-600">人工审计用时15分钟缩短到45s</div>
+</div>
+</div>
+<article class="prose prose-slate max-w-none space-y-8">
+<section>
+<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>项目背景</h2>
+<p class="text-slate-600 leading-relaxed mt-4">政企招投标清标与审计依赖大量人工比对条款、计算偏差，耗时长且易出错。需要将招标文件、投标文件与标准规范进行语义拆解与硬性指标校验，并输出结构化审计结果。</p>
+</section>
+<section>
+<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>技术架构</h2>
+<ul class="list-disc list-inside space-y-4 text-slate-600 mt-4">
+<li><strong class="text-slate-900">Dify 工作流编排：</strong> 使用 Dify 搭建核心清标与审计流水线，串联文档解析、语义理解与结果汇总。</li>
+<li><strong class="text-slate-900">多模型分工：</strong> 利用 Qwen2.5 进行招标/投标文本的语义拆解与条款抽取，DeepSeek V3 负责标准计算与合规判断。</li>
+<li><strong class="text-slate-900">RAG 优化：</strong> 将采购的服务器白皮书、历史标书纳入知识库，通过 RAG 提升检索与引用准确性，减少幻觉。</li>
+</ul>
+</section>
+<section>
+<h2 class="text-2xl font-bold flex items-center"><span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>工程亮点</h2>
+<p class="text-slate-600 leading-relaxed mt-4">针对模型在数值计算上的幻觉问题，使用 <strong class="text-slate-900">Python 脚本</strong> 执行硬性指标校验（如价格、工期、资质条款），将 LLM 输出与规则引擎结合，确保审计结果可追溯、可复验。</p>
+</section>
+</article>
+</main>
+<script>
+        (function () {
+            // 更新日期
+            var d = new Date();
+            var dateEl = document.getElementById('detail-date');
+            if (dateEl) {
+                dateEl.textContent =
+                    d.getFullYear() + '.' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '.' +
+                    String(d.getDate()).padStart(2, '0');
+            }
+
+            // 图片拖拽 + 缩放
+            var wrapper = document.getElementById('agent-zoom-wrapper');
+            var img = document.getElementById('agent-zoom-image');
+            if (!wrapper || !img) return;
+
+            var scale = 1;
+            var minScale = 1;
+            var maxScale = 3;
+            var pos = { x: 0, y: 0 };
+            var start = { x: 0, y: 0 };
+            var dragging = false;
+
+            function updateTransform() {
+                img.style.transform = 'translate(' + pos.x + 'px,' + pos.y + 'px) scale(' + scale + ')';
+                img.style.transformOrigin = 'center center';
+            }
+
+            // 滚轮缩放
+            wrapper.addEventListener('wheel', function (e) {
+                e.preventDefault();
+                var delta = e.deltaY || e.wheelDelta;
+                if (delta > 0) {
+                    scale = Math.max(minScale, scale - 0.1);
+                } else {
+                    scale = Math.min(maxScale, scale + 0.1);
+                }
+                updateTransform();
+            }, { passive: false });
+
+            // 拖拽查看
+            wrapper.addEventListener('mousedown', function (e) {
+                e.preventDefault();
+                dragging = true;
+                wrapper.classList.add('cursor-grabbing');
+                wrapper.classList.remove('cursor-grab');
+                start.x = e.clientX - pos.x;
+                start.y = e.clientY - pos.y;
+            });
+
+            window.addEventListener('mousemove', function (e) {
+                if (!dragging) return;
+                pos.x = e.clientX - start.x;
+                pos.y = e.clientY - start.y;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', function () {
+                if (!dragging) return;
+                dragging = false;
+                wrapper.classList.remove('cursor-grabbing');
+                wrapper.classList.add('cursor-grab');
+            });
+
+            // 初始化
+            updateTransform();
+            var backLink = document.getElementById('back-to-home');
+            if (backLink) {
+                backLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
