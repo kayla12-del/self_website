@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "myselfwebsite",
+  "compatibility_date": "2025-09-27",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "王泽华个人求职网页优化版_v7"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
