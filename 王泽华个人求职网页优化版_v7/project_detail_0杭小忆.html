@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>项目详情 | “杭小忆”AI 随身导览终端 - 王泽华</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center text-slate-600 hover:text-indigo-600 transition font-medium" href="javascript:void(0)" id="back-to-home">
+<span class="iconify mr-2" data-icon="heroicons:arrow-left-solid"></span> 返回项目作品列表
+            </a>
+<span class="text-sm font-mono text-slate-400">更新日期: <span id="detail-date"></span></span>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-purple-50 text-purple-600 text-xs font-bold mb-3">智慧文旅 &amp; 软硬件落地</div>
+<p class="text-slate-500 text-sm mb-2">2026.03 – 2026.07 · 上海脉策数据科技有限公司 · AI 数据产品经理实习生</p>
+<h1 class="text-4xl font-extrabold mb-8">"杭小忆" AI 随身导览终端项目</h1>
+
+<!-- 项目界面预览：固定高度容器 + 自动轮播 + 指示点切换 -->
+<div class="w-full mb-4">
+  <div id="gallery-hangxiaoyi"
+       class="w-full h-96 md:h-[28rem] overflow-hidden rounded-3xl shadow-lg bg-slate-100 flex items-center justify-center">
+    <img alt="杭小忆 AI 伴游搭子硬件终端实拍" class="w-full h-full object-contain" src="项目0-1.jpg"/>
+    <img alt="杭小忆产品三折页宣传物料" class="w-full h-full object-contain" src="项目0-2.jpg"/>
+    <img alt="杭小忆 AI 伴游搭子产品介绍页" class="w-full h-full object-contain" src="项目0-3.jpg"/>
+  </div>
+
+  <div id="gallery-hangxiaoyi-dots" class="flex justify-center gap-2 mt-3">
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="0"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="1"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-slate-300/40 cursor-pointer transition" data-index="2"></span>
+  </div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">项目职责</div>
+<div class="font-bold text-indigo-600">数据治理 / 知识库建设</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">核心技术</div>
+<div class="font-bold text-indigo-600">元数据模型 / RAG 检索</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-slate-400 text-xs mb-1">主要成果</div>
+<div class="font-bold text-indigo-600">治理 30,000+ 条文旅数据</div>
+</div>
+</div>
+
+<article class="prose prose-slate max-w-none space-y-10">
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+  项目背景
+</h2>
+<p class="text-slate-600 leading-relaxed mt-4">
+  参与杭州智慧文旅项目「杭小忆」文旅大模型向软硬件一体随身导览终端的落地迁移。终端侧面临检索不精准、场景意图识别不足等问题，我负责数据治理与知识库标准化建设，为硬件专属导览能力提供可检索、可维护的数据底座。
+</p>
+</section>
+
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+  工作职责
+</h2>
+<ul class="list-none space-y-3 text-slate-600 mt-4 pl-0">
+  <li><strong class="text-slate-900">知识库与元数据体系：</strong> 搭建硬件专属知识库，设计三级数据标签体系及景点、线路等核心元数据模型，建立「用户意图 — 标签 — 检索规则」映射机制，支撑终端知识检索标准化。</li>
+  <li><strong class="text-slate-900">数据交付与质检：</strong> 对接业务需求与交付标准，制定标准化数据清洗、分块规范及质量抽检机制，指导数据标注团队高效履约。</li>
+  <li><strong class="text-slate-900">现场走测与归因优化：</strong> 携带硬件终端开展景区现场走测，收集试用反馈，针对答错、漏答等案例进行归因，反向优化知识库字段与结构。</li>
+  <li><strong class="text-slate-900">范式复用：</strong> 将知识库搭建范式拓展至「上海博物馆美洲古代文明展览」，完成特展文物元数据结构化治理。</li>
+</ul>
+</section>
+
+<section>
+<h2 class="text-2xl font-bold flex items-center">
+  <span class="w-2 h-8 gradient-bg rounded-full mr-3"></span>
+  成果评估
+</h2>
+<ul class="list-none space-y-3 text-slate-600 mt-4 pl-0">
+  <li><strong class="text-slate-900">数据治理规模：</strong> 完成 <span class="font-semibold text-indigo-600">30,000+</span> 条文旅数据结构化治理，修复 <span class="font-semibold text-indigo-600">50+</span> 类典型问答异常，将知识库问题响应周期压缩至 <span class="font-semibold text-indigo-600">24h</span> 内。</li>
+  <li><strong class="text-slate-900">终端验收：</strong> 支撑景区终端通过「五一」大客流实测与验收，验证软硬件一体导览在高峰场景下的可用性。</li>
+  <li><strong class="text-slate-900">跨场景复用：</strong> 将治理范式复用至上海博物馆特展导览，实现从景区文旅到博物馆展陈的标准化迁移。</li>
+</ul>
+</section>
+</article>
+</main>
+<script>
+        (function () {
+            var d = new Date();
+            var dateEl = document.getElementById('detail-date');
+            if (dateEl) {
+                dateEl.textContent =
+                    d.getFullYear() + '.' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '.' +
+                    String(d.getDate()).padStart(2, '0');
+            }
+
+            var gallery = document.getElementById('gallery-hangxiaoyi');
+            var dotsWrap = document.getElementById('gallery-hangxiaoyi-dots');
+            if (gallery && dotsWrap) {
+                var imgs = gallery.querySelectorAll('img');
+                var dots = dotsWrap.querySelectorAll('[data-index]');
+                if (imgs.length && imgs.length === dots.length) {
+                    var current = 0;
+                    var timer = null;
+                    var interval = 3500;
+
+                    function updateView(index) {
+                        for (var i = 0; i < imgs.length; i++) {
+                            imgs[i].style.display = (i === index ? 'block' : 'none');
+                        }
+                        for (var j = 0; j < dots.length; j++) {
+                            dots[j].style.backgroundColor = (j === index ? 'rgba(79,70,229,0.9)' : 'rgba(148,163,184,0.4)');
+                            dots[j].style.transform = (j === index ? 'scale(1.2)' : 'scale(1)');
+                        }
+                    }
+
+                    function startAuto() {
+                        if (timer) clearInterval(timer);
+                        timer = setInterval(function () {
+                            current = (current + 1) % imgs.length;
+                            updateView(current);
+                        }, interval);
+                    }
+
+                    updateView(current);
+                    startAuto();
+
+                    dots.forEach(function (dot) {
+                        dot.addEventListener('mouseenter', function () {
+                            current = parseInt(dot.getAttribute('data-index'), 10) || 0;
+                            updateView(current);
+                            if (timer) clearInterval(timer);
+                        });
+                        dot.addEventListener('mouseleave', startAuto);
+                    });
+                }
+            }
+
+            var backLink = document.getElementById('back-to-home');
+            if (backLink) {
+                backLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
